@@ -23,4 +23,4 @@ jobs:
             git pull origin main
             
             # Khởi động lại Docker
-            docker compose -f docker-compose.yml -f docker-compose.postgres.yml up -d
+            docker compose -f docker-compose.yml -f docker-compose.postgres.yml -f docker-compose.tunnel.yml up -d

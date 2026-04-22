@@ -1,0 +1,15 @@
+# Cloudflare Tunnel overlay for GoClaw
+# Connects to Cloudflare using the TUNNEL_TOKEN from .env
+
+services:
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: goclaw-tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    depends_on:
+      - goclaw
+    networks:
+      - goclaw-net
