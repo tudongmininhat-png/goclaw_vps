@@ -9,6 +9,7 @@ import (
 
 	"github.com/nextlevelbuilder/goclaw/internal/audio"
 	"github.com/nextlevelbuilder/goclaw/internal/audio/gemini"
+	"strings"
 )
 
 // TestGeminiLive_UpstreamContract verifies that the Gemini provider maintains
@@ -87,15 +88,7 @@ func isServerError(err error) bool {
 		return false
 	}
 	msg := err.Error()
-	return contains(msg, "500") || contains(msg, "503") || contains(msg, "server error")
+	return strings.Contains(msg, "500") || strings.Contains(msg, "503") || strings.Contains(msg, "server error")
 }
 
 // contains checks if a string contains a substring (case-insensitive).
-func contains(s, substr string) bool {
-	for i := 0; i < len(s)-len(substr)+1; i++ {
-		if s[i:i+len(substr)] == substr {
-			return true
-		}
-	}
-	return false
-}

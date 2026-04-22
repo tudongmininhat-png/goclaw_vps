@@ -15,6 +15,7 @@ import (
 	"github.com/nextlevelbuilder/goclaw/internal/mcp"
 	"github.com/nextlevelbuilder/goclaw/internal/store"
 	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
+	"strings"
 )
 
 // TestBridgeTool_Execute_RevokeAgentGrant_ReturnsError verifies that after revoking
@@ -242,17 +243,9 @@ func grantUserAccess(t *testing.T, db *sql.DB, tenantID, serverID uuid.UUID, use
 }
 
 func containsGrantRevoked(s string) bool {
-	return len(s) > 0 && (contains(s, "grant revoked") || contains(s, "grant denied"))
+	return len(s) > 0 && (strings.Contains(s, "grant revoked") || strings.Contains(s, "grant denied"))
 }
 
-func contains(s, substr string) bool {
-	for i := 0; i <= len(s)-len(substr); i++ {
-		if s[i:i+len(substr)] == substr {
-			return true
-		}
-	}
-	return false
-}
 
 // fakeMCPClient is a stub for testing. Since mcpclient.Client is a struct
 // and not an interface, we cannot directly mock it. The test relies on
