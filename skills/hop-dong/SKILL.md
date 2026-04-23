@@ -1,10 +1,10 @@
 ---
-name: sanden-doc
-description: "Hệ thống soạn thảo Hợp đồng và Báo giá Sanden tự động. Skill này đã được tối ưu hóa bảo mật và cài sẵn thư viện."
+name: hop-dong
+description: "Hệ thống soạn thảo Hợp đồng và Báo giá Sanden tự động. Skill này đã được tối ưu hóa bảo mật và tích hợp Google Drive."
 allowed-tools: "Bash(*)"
 metadata:
   author: Sanden Intercool
-  version: "1.1"
+  version: "1.2"
 packages:
   - python-docx
   - docxtpl
@@ -12,6 +12,7 @@ packages:
   - google-api-python-client
   - google-auth-oauthlib
   - google-auth-httplib2
+  - google-auth
 tools:
   - name: generate-document
     description: "Tạo Hợp đồng hoặc Báo giá và trả về link Google Drive. Nhận vào payload JSON chứa thông tin đối tác và sản phẩm."
