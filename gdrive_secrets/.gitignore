@@ -1,0 +1,4 @@
+# KHÔNG commit credentials lên git!
+token.json
+google_credentials.json
+*.json
