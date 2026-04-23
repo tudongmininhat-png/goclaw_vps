@@ -1,0 +1,18 @@
+{
+  "type": "quotation",
+  "TEN_DOI_TAC": "CÔNG TY CP THẾ GIỚI DI ĐỘNG",
+  "dia_chi": "128 Trần Quang Khải, Quận 1, TP. HCM",
+  "NGAY_HIEN_TAI": "23/04/2026",
+  "items": [
+    {
+      "model": "SVN-0455",
+      "so_luong": 2,
+      "don_gia": 12500000
+    },
+    {
+      "model": "SNC-0355",
+      "so_luong": 1,
+      "don_gia": 8500000
+    }
+  ]
+}

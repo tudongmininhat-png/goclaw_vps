@@ -1,0 +1,14 @@
+{
+  "type": "contract",
+  "TEN_DOI_TAC": "CÔNG TY TNHH BÁN LẺ DIGITAL",
+  "dia_chi": "456 Nguyễn Thị Minh Khai, Quận 3, TP. HCM",
+  "NGUOI_DAI_DIEN": "Ông Nguyễn Văn B",
+  "NGAY_HIEN_TAI": "23/04/2026",
+  "items": [
+    {
+      "model": "SVN-0455",
+      "so_luong": 5,
+      "don_gia": 12500000
+    }
+  ]
+}
