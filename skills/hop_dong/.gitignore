@@ -1,0 +1,10 @@
+token.json
+google_credentials.json
+client_secrets.json
+credentials.json
+*.json
+!config.json
+temp_data.json
+__pycache__/
+*.pyc
+.env
