@@ -1,0 +1,20 @@
+# Credentials - KHÔNG BAO GIỜ commit lên git
+token.json
+google_credentials.json
+client_secrets.json
+credentials.json
+*.json
+!config.json
+
+# Dữ liệu tạm thời
+temp_data.json
+.env
+
+# Output do Bot/Script tạo ra - chỉ là file tạm
+output/*.docx
+output/*.pdf
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo

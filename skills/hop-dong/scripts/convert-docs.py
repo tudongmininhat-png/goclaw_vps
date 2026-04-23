@@ -513,6 +513,11 @@ def process_document(json_file_path):
 def parse_args(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "json_path",
+        nargs="?",
+        help="Đường dẫn tới file JSON dữ liệu (mặc định là temp_data.json)",
+    )
+    parser.add_argument(
         "--validate-models",
         action="store_true",
         help="Kiểm tra tính hợp lệ của các model trong temp_data.json dựa trên database.",
@@ -524,14 +529,14 @@ def main(argv=None):
     args = parse_args(argv)
     base_dir = os.path.dirname(os.path.abspath(__file__))
 
-    json_path = os.path.join(base_dir, "temp_data.json")
-    if len(args) > 0 and not isinstance(args, argparse.Namespace):
-        pass # Handle if we want to pass argv[1] directly
-    if not os.path.exists(json_path) and len(sys.argv) > 1 and sys.argv[1].endswith(".json"):
-        json_path = sys.argv[1]
+    # Ưu tiên lấy từ tham số dòng lệnh, nếu không có mới tìm temp_data.json mặc định
+    if args.json_path:
+        json_path = args.json_path
+    else:
+        json_path = os.path.join(base_dir, "temp_data.json")
 
     if not os.path.exists(json_path):
-        print("Không tìm thấy temp_data.json.")
+        print(f"Lỗi: Không tìm thấy file dữ liệu tại: {json_path}")
         sys.exit(1)
 
     # Logic kiểm tra model nếu được yêu cầu hoặc khi chạy bình thường
