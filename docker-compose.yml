@@ -55,6 +55,13 @@ services:
       # Google Drive credentials - mounted separately, NOT inside skill ZIP
       # Place token.json + google_credentials.json in ./gdrive_secrets/ on the VPS host
       - ./gdrive_secrets:/app/data/gdrive_auth
+      # ── Sanden Skill: TOÀN BỘ (Code + Data nằm chung cho dễ quản lý) ─────
+      - ./skills/hop-dong/SKILL.md:/app/data/skills-store/hop-dong/1/SKILL.md
+      - ./skills/hop-dong/scripts:/app/data/skills-store/hop-dong/1/scripts
+      - ./skills/hop-dong/assets:/app/data/skills-store/hop-dong/1/assets
+      - ./skills/hop-dong/knowledge:/app/data/skills-store/hop-dong/1/knowledge
+      - ./skills/hop-dong/gdrive_secrets:/app/data/skills-store/hop-dong/1/gdrive_secrets
+      - ./skills/hop-dong/output:/app/data/skills-store/hop-dong/1/output
     extra_hosts:
       - "host.docker.internal:host-gateway"
     security_opt:

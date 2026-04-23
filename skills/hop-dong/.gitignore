@@ -1,20 +1,18 @@
-# Credentials - KHÔNG BAO GIỜ commit lên git
+# ============================================================
+# NGUYÊN TẮC: Git quản lý CODE + DATA. Chỉ loại trừ SECRETS và file tạm.
+# ============================================================
+
+# --- SECRETS - KHÔNG BAO GIỜ commit (copy lên VPS bằng scp) ---
+gdrive_secrets/
+output/
+.env
 token.json
 google_credentials.json
 client_secrets.json
 credentials.json
-*.json
-!config.json
 
-# Dữ liệu tạm thời
+# --- File tạm do script tạo ra ---
 temp_data.json
-.env
-
-# Output do Bot/Script tạo ra - chỉ là file tạm
-output/*.docx
-output/*.pdf
-
-# Python cache
 __pycache__/
 *.pyc
 *.pyo
