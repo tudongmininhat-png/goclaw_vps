@@ -4,7 +4,7 @@ description: "Hệ thống soạn thảo Hợp đồng và Báo giá Sanden tự
 allowed-tools: "Bash(*)"
 metadata:
   author: Sanden Intercool
-  version: "1.2"
+  version: "1.3"
 packages:
   - python-docx
   - docxtpl
@@ -13,6 +13,12 @@ packages:
   - google-auth-oauthlib
   - google-auth-httplib2
   - google-auth
+exclude_deps:
+  - google
+  - googleapiclient
+  - google.auth
+  - googleapiclient.discovery
+  - google.oauth2.service_account
 tools:
   - name: generate-document
     description: "Tạo Hợp đồng hoặc Báo giá và trả về link Google Drive. Nhận vào payload JSON chứa thông tin đối tác và sản phẩm."
