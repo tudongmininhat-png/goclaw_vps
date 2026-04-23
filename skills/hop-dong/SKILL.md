@@ -5,6 +5,13 @@ allowed-tools: "Bash(*)"
 metadata:
   author: Sanden Intercool
   version: "1.1"
+packages:
+  - python-docx
+  - docxtpl
+  - pandas
+  - google-api-python-client
+  - google-auth-oauthlib
+  - google-auth-httplib2
 ---
 
 # Hướng dẫn sử dụng Skill Sanden Document

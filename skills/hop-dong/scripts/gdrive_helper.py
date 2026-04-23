@@ -17,14 +17,8 @@ import os
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-# Ẩn import khỏi scanner của GoClaw để tránh lỗi Missing deps
-discovery = __import__('googleapiclient.discovery', fromlist=['build'])
-build = discovery.build
-http = __import__('googleapiclient.http', fromlist=['MediaFileUpload', 'MediaIoBaseDownload', 'MediaIoBaseUpload'])
-MediaFileUpload = http.MediaFileUpload
-MediaIoBaseDownload = http.MediaIoBaseDownload
-MediaIoBaseUpload = http.MediaIoBaseUpload
-
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload, MediaIoBaseDownload, MediaIoBaseUpload
 
 SCOPES = ["https://www.googleapis.com/auth/drive"]
 

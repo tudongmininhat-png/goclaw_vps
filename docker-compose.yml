@@ -54,7 +54,7 @@ services:
       - goclaw-workspace:/app/workspace
       # Google Drive credentials - mounted separately, NOT inside skill ZIP
       # Place token.json + google_credentials.json in ./gdrive_secrets/ on the VPS host
-      - ./gdrive_secrets:/app/data/gdrive_auth:ro
+      - ./gdrive_secrets:/app/data/gdrive_auth
     extra_hosts:
       - "host.docker.internal:host-gateway"
     security_opt:

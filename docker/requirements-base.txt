@@ -5,3 +5,11 @@
 # Last reviewed: 2026-04-03
 
 edge-tts~=7.2.8
+
+# Sanden Quotation Skill dependencies
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+python-docx
+docxtpl
+pandas
