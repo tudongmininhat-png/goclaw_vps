@@ -6,6 +6,7 @@ import os
 import re
 import sys
 import tempfile
+import unicodedata
 from copy import deepcopy
 from datetime import datetime
 
@@ -35,8 +36,17 @@ LOOP_CLOSE_RE = re.compile(r"{%\s*(?:tr\s+)?endfor\s*%}")
 def sanitize_filename(filename):
     if not filename:
         return "Unknown"
-    safe = re.sub(r'[\\/*?:"<>|]', "", str(filename))
-    return safe.strip() or "Unknown"
+        
+    # Loại bỏ dấu Tiếng Việt (chuyển Unicode thành ASCII)
+    filename = unicodedata.normalize('NFKD', str(filename)).encode('ASCII', 'ignore').decode('utf-8')
+    # Xử lý riêng ký tự Đ/đ do NFKD không hỗ trợ tách dấu
+    filename = filename.replace('Đ', 'D').replace('đ', 'd')
+    
+    # Xoá các ký tự cấm của hệ điều hành
+    safe = re.sub(r'[\\/*?:"<>|]', "", filename)
+    # Thay thế toàn bộ khoảng trắng bằng dấu gạch dưới (_)
+    safe = re.sub(r'\s+', '_', safe.strip())
+    return safe or "Unknown"
 
 
 def normalize_model(model_code):

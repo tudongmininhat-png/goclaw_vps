@@ -3,21 +3,24 @@ import subprocess
 import json
 import sys
 import shutil
+import db_helper
 
 # Đường dẫn tương đối
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPTS_DIR = os.path.join(BASE_DIR, "scripts")
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
-TEMP_DATA_PATH = os.path.join(BASE_DIR, "temp_data.json")
 
 def execute_full_cycle(payload):
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    temp_data_path = os.path.join(OUTPUT_DIR, f"temp_data_{os.getpid()}.json")
+    
     # 1. Tạo file temp_data.json
-    with open(TEMP_DATA_PATH, "w", encoding="utf-8") as f:
+    with open(temp_data_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False)
     
     try:
         # 2. Chạy convert-docs.py để tạo file Docx và PDF
-        subprocess.run(["python3", os.path.join(SCRIPTS_DIR, "convert-docs.py")], cwd=BASE_DIR, check=True, capture_output=True, text=True)
+        subprocess.run(["python3", os.path.join(SCRIPTS_DIR, "convert-docs.py"), temp_data_path], cwd=BASE_DIR, check=True, capture_output=True, text=True)
         
         # 3. Tìm file .docx vừa tạo trong output/
         docx_files = [f for f in os.listdir(OUTPUT_DIR) if f.endswith(".docx")]
@@ -47,6 +50,10 @@ def execute_full_cycle(payload):
                     print(f"Không thể xóa {file_path}: {e}")
         
         if pdf_link.startswith("http"):
+            # Khởi tạo bảng (nếu chưa có) và lưu thông tin khách hàng vào Postgres
+            db_helper.init_db()
+            db_helper.upsert_customer(payload, payload.get("type", "quotation"))
+            
             return {"success": True, "links": {"pdf": pdf_link}}
         else:
             return {"error": "Không lấy được link từ Google Drive", "logs": result.stdout}
@@ -57,8 +64,8 @@ def execute_full_cycle(payload):
         return {"error": str(e)}
     finally:
         # Xóa temp_data.json
-        if os.path.exists(TEMP_DATA_PATH):
-            os.remove(TEMP_DATA_PATH)
+        if 'temp_data_path' in locals() and os.path.exists(temp_data_path):
+            os.remove(temp_data_path)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

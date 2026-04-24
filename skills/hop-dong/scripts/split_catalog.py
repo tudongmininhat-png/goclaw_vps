@@ -2,7 +2,7 @@ import os
 import re
 
 input_path = "/Volumes/SSD 1TB/sanden_full/Admin_01/hop_dong/cataloge/SIV_E-Catalog_Full_VN.md"
-output_dir = "/Volumes/SSD 1TB/repos skills github/goclaw-dev/skills/hop_dong/references"
+output_dir = "/Volumes/SSD 1TB/repos skills github/goclaw_vps/skills/hop_dong/references"
 
 os.makedirs(output_dir, exist_ok=True)
 

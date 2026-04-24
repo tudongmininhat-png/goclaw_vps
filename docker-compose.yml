@@ -62,6 +62,18 @@ services:
       - ./skills/hop-dong/knowledge:/app/data/skills-store/hop-dong/1/knowledge
       - ./skills/hop-dong/gdrive_secrets:/app/data/skills-store/hop-dong/1/gdrive_secrets
       - ./skills/hop-dong/output:/app/data/skills-store/hop-dong/1/output
+      # ── Secure Bot Workspace Mounts (Bot see code/assets but NO secrets) ──
+      - ./skills/hop-dong/SKILL.md:/app/workspace/openrouter-agent/ws/system/skills/hop-dong/SKILL.md
+      - ./skills/hop-dong/scripts:/app/workspace/openrouter-agent/ws/system/skills/hop-dong/scripts
+      - ./skills/hop-dong/assets:/app/workspace/openrouter-agent/ws/system/skills/hop-dong/assets
+      - ./skills/hop-dong/knowledge:/app/workspace/openrouter-agent/ws/system/skills/hop-dong/knowledge
+      - ./skills/hop-dong/output:/app/workspace/openrouter-agent/ws/system/skills/hop-dong/output
+      # Mirror for Admin
+      - ./skills/hop-dong/SKILL.md:/app/workspace/admin-openlaw/ws/system/skills/hop-dong/SKILL.md
+      - ./skills/hop-dong/scripts:/app/workspace/admin-openlaw/ws/system/skills/hop-dong/scripts
+      - ./skills/hop-dong/assets:/app/workspace/admin-openlaw/ws/system/skills/hop-dong/assets
+      - ./skills/hop-dong/knowledge:/app/workspace/admin-openlaw/ws/system/skills/hop-dong/knowledge
+      - ./skills/hop-dong/output:/app/workspace/admin-openlaw/ws/system/skills/hop-dong/output
     extra_hosts:
       - "host.docker.internal:host-gateway"
     security_opt:

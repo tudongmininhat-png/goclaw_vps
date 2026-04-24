@@ -13,6 +13,7 @@ packages:
   - google-auth-oauthlib
   - google-auth-httplib2
   - google-auth
+  - pg8000
 exclude_deps:
   - google
   - googleapiclient
