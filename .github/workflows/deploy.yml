@@ -24,3 +24,4 @@ jobs:
             
             # Khởi động lại Docker
             docker compose -f docker-compose.yml -f docker-compose.postgres.yml -f docker-compose.tunnel.yml up -d
+            docker compose -f docker-compose.yml restart goclaw
